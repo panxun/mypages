@@ -104,22 +104,33 @@
         .side-menu {
             position: fixed;
             top: 0;
-            left: -250px;
-            width: 250px;
+            left: -300px;
+            width: 300px;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             transition: left 0.3s ease;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
         }
 
         .side-menu.open {
             left: 0;
         }
 
+        .side-menu h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
         .side-menu ul {
             list-style: none;
-            padding: 20px;
+            padding: 0;
             margin: 0;
         }
 
@@ -131,10 +142,21 @@
             text-decoration: none;
             color: #333;
             font-size: 1.1rem;
-            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
 
         .side-menu ul li a:hover {
+            background: rgba(255, 111, 97, 0.1);
+            transform: translateX(10px);
+        }
+
+        .side-menu ul li a i {
+            font-size: 1.2rem;
             color: #ff6f61;
         }
 
@@ -225,11 +247,14 @@
 <body>
     <!-- 侧滑菜单 -->
     <div class="side-menu" id="sideMenu">
+        <h3>工具集</h3>
         <ul>
-            <li><a href="https://github.com" target="_blank">GitHub</a></li>
-            <li><a href="https://codepen.io" target="_blank">CodePen</a></li>
-            <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a></li>
-            <li><a href="https://dev.to" target="_blank">Dev.to</a></li>
+            <li>
+                <a href="https://tool.liumingye.cn" target="_blank">
+                    <i class="fas fa-tools"></i>
+                    <span>在线工具集</span>
+                </a>
+            </li>
         </ul>
     </div>
 
@@ -243,7 +268,7 @@
         <h1>潘勋</h1>
         <h2>软件工程学生</h2>
         <p>热爱编程，喜欢探索新技术，致力于成为一名优秀的软件工程师。</p>
-        <p>目前专注于全栈开发。</p>
+        <p>目前专注于全栈开发、人工智能和云计算领域。</p>
         <div class="social-links">
             <a href="https://github.com/panxun" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
             <a href="mailto:panxun188@qq.com" title="Email"><i class="fas fa-envelope"></i></a>
