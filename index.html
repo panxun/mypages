@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>潘勋 - 软件工程学生</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* 全局样式 */
         body {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background: #0a0a0a;
-            color: #00ffcc;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,117 +24,157 @@
         /* 容器样式 */
         .container {
             text-align: center;
-            background: rgba(10, 10, 10, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             padding: 40px 60px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             animation: fadeIn 2s ease-in-out;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0, 255, 204, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         /* 标题样式 */
         h1 {
-            font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
             margin-bottom: 10px;
-            color: #00ffcc;
+            color: #333;
             animation: slideIn 1.5s ease-in-out;
-            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
         }
 
         /* 副标题样式 */
         h2 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #00ffcc;
+            color: #555;
             animation: slideIn 2s ease-in-out;
-            text-shadow: 0 0 5px #00ffcc;
         }
 
         /* 段落样式 */
         p {
             font-size: 1.1rem;
             margin: 10px 0;
-            color: #e0e0e0;
+            color: #555;
             animation: slideIn 2.5s ease-in-out;
         }
 
         /* 社交链接样式 */
         .social-links {
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
         .social-links a {
             text-decoration: none;
-            color: #00ffcc;
-            margin: 0 15px;
-            font-size: 1.8rem;
+            color: #333;
+            font-size: 1.5rem;
             transition: transform 0.3s ease, color 0.3s ease;
             display: inline-block;
         }
 
         .social-links a:hover {
-            color: #00d2ff;
-            transform: translateY(-5px);
-            text-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff;
+            color: #ff6f61;
+            transform: scale(1.2);
         }
 
-        /* 背景粒子效果 */
-        .particles {
-            position: absolute;
+        /* 微信联系方式样式 */
+        .wechat-contact {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .wechat-contact i {
+            font-size: 1.5rem;
+            color: #ff6f61;
+        }
+
+        /* 侧滑菜单样式 */
+        .side-menu {
+            position: fixed;
             top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .side-menu ul li {
+            margin: 15px 0;
+        }
+
+        .side-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .side-menu ul li a:hover {
+            color: #ff6f61;
+        }
+
+        /* 菜单按钮样式 */
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+            z-index: 1001;
+            transition: color 0.3s ease;
+        }
+
+        .menu-button:hover {
+            color: #ff6f61;
+        }
+
+        /* 底部友链样式 */
+        .footer {
+            position: fixed;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .particles span {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #00ffcc;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
-            animation: float 5s infinite ease-in-out;
+        .footer a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
-        .particles span:nth-child(1) {
-            top: 10%;
-            left: 20%;
-            animation-duration: 6s;
-        }
-
-        .particles span:nth-child(2) {
-            top: 50%;
-            left: 70%;
-            animation-duration: 8s;
-        }
-
-        .particles span:nth-child(3) {
-            top: 80%;
-            left: 40%;
-            animation-duration: 7s;
-        }
-
-        .particles span:nth-child(4) {
-            top: 30%;
-            left: 90%;
-            animation-duration: 9s;
-        }
-
-        /* 代码片段装饰 */
-        .code-snippet {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 0.9rem;
-            color: #00ffcc;
-            opacity: 0.5;
-            user-select: none;
+        .footer a:hover {
+            color: #ff6f61;
         }
 
         /* 动画定义 */
@@ -155,18 +195,6 @@
             to {
                 transform: translateY(0);
                 opacity: 1;
-            }
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0);
             }
         }
 
@@ -195,36 +223,50 @@
     </style>
 </head>
 <body>
+    <!-- 侧滑菜单 -->
+    <div class="side-menu" id="sideMenu">
+        <ul>
+            <li><a href="https://github.com" target="_blank">GitHub</a></li>
+            <li><a href="https://codepen.io" target="_blank">CodePen</a></li>
+            <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a></li>
+            <li><a href="https://dev.to" target="_blank">Dev.to</a></li>
+        </ul>
+    </div>
+
+    <!-- 菜单按钮 -->
+    <div class="menu-button" id="menuButton">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- 主内容 -->
     <div class="container">
         <h1>潘勋</h1>
         <h2>软件工程学生</h2>
         <p>热爱编程，喜欢探索新技术，致力于成为一名优秀的软件工程师。</p>
-        <p>目前专注于全栈开发、人工智能和云计算领域。</p>
+        <p>目前专注于全栈开发。</p>
         <div class="social-links">
             <a href="https://github.com/panxun" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
             <a href="mailto:panxun188@qq.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
+        <div class="wechat-contact">
+            <i class="fab fa-weixin"></i>
+            <span>微信: _Cayenne__</span>
+        </div>
     </div>
 
-    <!-- 背景粒子效果 -->
-    <div class="particles">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+    <!-- 底部友链 -->
+    <div class="footer">
+        <a href="https://pixcat.cn" target="_blank">像素狸猫网 - pixcat.cn</a>
     </div>
 
-    <!-- 代码片段装饰 -->
-    <div class="code-snippet">
-        <pre>
-            <code>
-                while (true) {
-                    explore();
-                    code();
-                    innovate();
-                }
-            </code>
-        </pre>
-    </div>
+    <script>
+        // 侧滑菜单交互
+        const menuButton = document.getElementById('menuButton');
+        const sideMenu = document.getElementById('sideMenu');
+
+        menuButton.addEventListener('click', () => {
+            sideMenu.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
