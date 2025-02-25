@@ -19,6 +19,28 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* 动态背景 */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+            animation: gradientAnimation 10s infinite alternate;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
         }
 
         /* 容器样式 */
@@ -61,6 +83,65 @@
             margin: 10px 0;
             color: #555;
             animation: slideIn 2.5s ease-in-out;
+        }
+
+        /* 技能展示样式 */
+        .skills {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .skills h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .skill-bar {
+            width: 100%;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .skill-progress {
+            height: 10px;
+            background: #ff6f61;
+            border-radius: 10px;
+            width: 0;
+            transition: width 1s ease;
+        }
+
+        /* 项目展示样式 */
+        .projects {
+            margin-top: 30px;
+        }
+
+        .projects h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .project-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: #555;
         }
 
         /* 社交链接样式 */
@@ -176,6 +257,16 @@
             color: #ff6f61;
         }
 
+        /* 时间显示样式 */
+        .time {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: #333;
+            z-index: 1001;
+        }
+
         /* 底部友链样式 */
         .footer {
             position: fixed;
@@ -245,6 +336,9 @@
     </style>
 </head>
 <body>
+    <!-- 动态背景 -->
+    <div class="background"></div>
+
     <!-- 侧滑菜单 -->
     <div class="side-menu" id="sideMenu">
         <h3>工具集</h3>
@@ -263,16 +357,55 @@
         <i class="fas fa-bars"></i>
     </div>
 
+    <!-- 时间显示 -->
+    <div class="time" id="time"></div>
+
     <!-- 主内容 -->
     <div class="container">
         <h1>潘勋</h1>
         <h2>软件工程学生</h2>
         <p>热爱编程，喜欢探索新技术，致力于成为一名优秀的软件工程师。</p>
         <p>目前专注于全栈开发、人工智能和云计算领域。</p>
+
+        <!-- 技能展示 -->
+        <div class="skills">
+            <h3>技能</h3>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%;"></div>
+            </div>
+            <p>JavaScript / TypeScript</p>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%;"></div>
+            </div>
+            <p>Python</p>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%;"></div>
+            </div>
+            <p>React / Vue</p>
+        </div>
+
+<!--         <!-- 项目展示 -->
+        <div class="projects">
+            <h3>项目</h3>
+            <div class="project-card">
+                <h4>个人博客系统</h4>
+                <p>使用 React 和 Node.js 构建的个人博客系统，支持 Markdown 编辑和文章发布。</p>
+            </div>
+            <div class="project-card">
+                <h4>在线代码编辑器</h4>
+                <p>基于 CodeMirror 的在线代码编辑器，支持多种编程语言和实时预览。</p>
+            </div>
+        </div>
+ -->
+        <!-- 社交链接 -->
         <div class="social-links">
             <a href="https://github.com/panxun" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/LateRoad" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://zhihu.com" target="_blank" title="知乎"><i class="fab fa-zhihu"></i></a>
             <a href="mailto:panxun188@qq.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
+
+        <!-- 微信联系方式 -->
         <div class="wechat-contact">
             <i class="fab fa-weixin"></i>
             <span>微信: _Cayenne__</span>
@@ -292,6 +425,18 @@
         menuButton.addEventListener('click', () => {
             sideMenu.classList.toggle('open');
         });
+
+        // 时间显示
+        const timeElement = document.getElementById('time');
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
     </script>
 </body>
 </html>
