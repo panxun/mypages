@@ -1,3 +1,8 @@
+---
+title: OpenAI news recently.
+date: 2025-03-07 20:20:23
+tags:
+---
 # 最新科技新闻：OpenAI 推出全新 AI 模型 GPT-5
 
 ![OpenAI Logo](https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg)
