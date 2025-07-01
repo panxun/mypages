@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>随机文字网页</title>
+</head>
+<body>
+    <div id="randomText"></div>
+
+    <script>
+        // 定义随机显示的文字数组
+        const texts = ['你好', '您好'];
+        // 生成随机索引（0 或 1）
+        const randomIndex = Math.floor(Math.random() * texts.length);
+        // 获取并显示随机文字
+        document.getElementById('randomText').textContent = texts[randomIndex];
+    </script>
+</body>
+</html>
